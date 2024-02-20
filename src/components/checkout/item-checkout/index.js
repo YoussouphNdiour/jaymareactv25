@@ -72,7 +72,7 @@ import {
   setOfflineMethod,
   setOrderDetailsModal,
 } from "../../../redux/slices/offlinePaymentData";
-
+import { ButtonGroup, Tabs } from "@mui/material";
 import CustomImageContainer from "../../CustomImageContainer";
 import thunderstorm from "../assets/thunderstorm.svg";
 
@@ -981,16 +981,16 @@ const ItemCheckout = (props) => {
                   {getCurrentModuleType() === "food" && storeData?.cutlery && (
                     <Cutlery isChecked={cutlery} handleChange={handleCutlery} />
                   )}
-                  <ItemSelectWithChip
+                  {/* <ItemSelectWithChip
                     title="If Any Product is not available"
                     data={productUnavailableData}
                     handleChange={handleItemUnavailableNote}
-                  />
-                  <ItemSelectWithChip
+                  /> */}
+                  {/* <ItemSelectWithChip
                     title="Add More Delivery Instruction"
                     data={deliveryInstructions}
                     handleChange={handleDeliveryInstructionNote}
-                  />
+                  /> */}
                   {distanceData && storeData ? (
                     <OrderCalculation
                       usePartialPayment={usePartialPayment}

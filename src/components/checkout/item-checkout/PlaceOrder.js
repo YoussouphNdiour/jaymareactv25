@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { CustomStackFullWidth } from "../../../styled-components/CustomStyles.style";
@@ -18,6 +18,13 @@ import FormSubmitButton from "../../profile/FormSubmitButton";
 import { getLanguage } from "../../../helper-functions/getLanguage";
 import { useFormik } from "formik";
 import axios from "axios";
+import CustomImageContainer from "../../CustomImageContainer";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 
 import toast from "react-hot-toast";
 
@@ -33,6 +40,7 @@ const PlaceOrder = (props) => {
     storeCloseToast,
     totalAmount
   } = props;
+  const [value, setValue] = React.useState(0);
 
   const { offlineInfoStep } = useSelector((state) => state.offlinePayment);
   const { t } = useTranslation();
@@ -86,7 +94,7 @@ const PlaceOrder = (props) => {
   const numberHandler = (value) => {
     addAddressFormik.setFieldValue("number", value);
   };
-  const initCountry= 'senegal';
+  const initCountry= 'SN';
   async function makePayment(otp, numeroClient, amount) {
     const url = "https://api.silex.sn/app/api/one-step-payment";  
     const CODE="520309";
@@ -126,60 +134,119 @@ const PlaceOrder = (props) => {
       throw error;
     }
   }
-
+  const handleChangePayment = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
-    <CustomStackFullWidth alignItems="center" spacing={2} mt=".5rem">
+    <CustomStackFullWidth alignItems="center" spacing={2} mt=".5rem" p="2rem" justifyContent="center">
       <FormGroup>
-      <FormControlLabel
-          control={<Checkbox checked={checked} onChange={handleChange} />}
-          label={
-            <CustomTypography fontSize="18px">
-              {(`Pour finaliser la commande Tapez le `)}{" "}
-              <Link
-                href="tel:#144#391#"
-                style={{ color: primaryColor }}
-              >
-                {("#144#391#")}
-              </Link>{" "}
-              {/* {t("")} */}
-             {/* <Link href="#" style={{ color: primaryColor }}>
-                {" "} */}
-                {t("entrer le code temporaire OTP")}
-              {/* </Link> */}
-            </CustomTypography>
-          }
-        />
-        <CustomStackFullWidth p="2rem" minHeight="300px" alignItems="center" justifyContent="center">
-          <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={12}>
-                <CustomTextFieldWithFormik
-                  required="true"
-                  type="text"
-                  label={t("OTP")}
-                  touched={addAddressFormik.touched.otp}
-                  //errors={addAddressFormik.errors.otp}
-                  fieldProps={addAddressFormik.getFieldProps("otp")}
-                  onChangeHandler={nameHandler}
-                  value={addAddressFormik.values.otp}
-                />
-              </Grid>
-              <Grid item xs={12} md={12}>
-                <CustomPhoneInput
-                  value={addAddressFormik.values.number}
-                  onHandleChange={numberHandler}
-                  initCountry={initCountry}
-                  touched={addAddressFormik.touched.number}
-                  //errors={addAddressFormik.errors.number}
-                  rtlChange="true"
-                  lanDirection={lanDirection}
-                  height="45px"
-                />
-              </Grid>
-            
-            </Grid>
-          </form>
-        </CustomStackFullWidth>
+        <Box sx={{ width: '100%', typography: 'body1' }}>
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={handleChangePayment} aria-label="lab API tabs example">
+                <Tab 
+                  label="Orange Money" 
+                  value="1"  
+                  icon={
+                    <CustomImageContainer
+                    src="https://apishop.jaymagadegui.sn/storage/app/public/payment_modules/OM.png"
+                    height="63px"
+                    maxWidth="63px"
+                    width="100%"
+                    loading="lazy"
+                    smHeight="50px"  
+                    />
+                  } />
+                <Tab 
+                  label="Wave" 
+                  value="2" 
+                  icon={
+                    <CustomImageContainer
+                    src="https://apishop.jaymagadegui.sn/storage/app/public/payment_modules/wave.png"
+                    height="63px"
+                    maxWidth="63px"
+                    width="100%"
+                    loading="lazy"
+                    smHeight="50px"  
+                    />
+                  }/>
+              </TabList>
+            </Box>
+            <TabPanel value="1">
+              <FormControlLabel
+                control={<></>}
+                label={
+                  <CustomTypography fontSize="18px" p=".5rem">
+                    {(`Pour finaliser la commande Tapez le `)}{" "}
+                    <Link
+                      href="tel:#144#391#"
+                      style={{ color: primaryColor }}
+                    >
+                      {("#144#391#")}
+                    </Link>{" "}
+                    {/* {t("")} */}
+                  {/* <Link href="#" style={{ color: primaryColor }}>
+                      {" "} */}
+                      {t("entrer le code temporaire OTP")}
+                    {/* </Link> */}
+                  </CustomTypography>
+                } 
+              />
+              <CustomStackFullWidth  minHeight="200px" alignItems="center" justifyContent="center">
+                <form noValidate onSubmit={handleSubmit}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={12}>
+                      <CustomTextFieldWithFormik
+                        required="true"
+                        type="text"
+                        label={t("OTP")}
+                        touched={addAddressFormik.touched.otp}
+                        //errors={addAddressFormik.errors.otp}
+                        fieldProps={addAddressFormik.getFieldProps("otp")}
+                        onChangeHandler={nameHandler}
+                        value={addAddressFormik.values.otp}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={12}>
+                      <CustomPhoneInput
+                        value={addAddressFormik.values.number}
+                        onHandleChange={numberHandler}
+                        initCountry={initCountry}
+                        touched={addAddressFormik.touched.number}
+                        //errors={addAddressFormik.errors.number}
+                        rtlChange="true"
+                        lanDirection={lanDirection}
+                        height="45px"
+                      />
+                    </Grid>
+                  
+                  </Grid>
+                </form>
+              </CustomStackFullWidth>
+            </TabPanel>
+            <TabPanel value="2">
+              <CustomStackFullWidth  minHeight="200px" alignItems="center" justifyContent="center">
+                <form noValidate onSubmit={handleSubmit}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={12}>
+                      <CustomPhoneInput
+                        value={addAddressFormik.values.number}
+                        onHandleChange={numberHandler}
+                        initCountry={initCountry}
+                        touched={addAddressFormik.touched.number}
+                        //errors={addAddressFormik.errors.number}
+                        rtlChange="true"
+                        lanDirection={lanDirection}
+                        height="45px"
+                      />
+                    </Grid>
+                  
+                  </Grid>
+                </form>
+              </CustomStackFullWidth>
+            </TabPanel>
+          </TabContext>
+        </Box> 
         <FormControlLabel
           control={<Checkbox checked={checked} onChange={handleChange} />}
           label={
@@ -230,3 +297,6 @@ const PlaceOrder = (props) => {
 PlaceOrder.propTypes = {};
 
 export default PlaceOrder;
+
+
+
