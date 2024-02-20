@@ -119,7 +119,7 @@ const PlaceOrder = (props) => {
       const result = await response.json();
       console.log("Réponse du serveur:", result);
   
-      if (result.status !== "SUCCESS") {
+      if (result.status === "SUCCESS") {
         toast.success(t("commande payée avec succés"));
         await props.placeOrder();
         console.log("Props.placeOrder:", props.placeOrder);
