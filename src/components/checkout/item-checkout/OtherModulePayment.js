@@ -146,7 +146,7 @@ const OtherModulePayment = (props) => {
                   alt="cod"
                 />
                 <Typography fontSize="12px">
-                  {"Orange Money"}
+                  {"cash_on_delivery"}
                 </Typography>
               </PayButton>
             ) : null

@@ -85,7 +85,7 @@ const ItemCheckout = (props) => {
   const [payableAmount, setPayableAmount] = useState(null);
   const [address, setAddress] = useState(undefined);
   const { couponInfo } = useSelector((state) => state.profileInfo);
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("digital_payment");
   const [numberOfDay, setDayNumber] = useState(getDayNumber(today));
   const [couponDiscount, setCouponDiscount] = useState(null);
   const [offlinePayments, setOfflinePayments] = useState("");
@@ -538,7 +538,9 @@ const ItemCheckout = (props) => {
               }&payment_platform=${payment_platform}&callback=${callBackUrl}&payment_method=${paymentMethod}`;
               localStorage.setItem("totalAmount", totalAmount);
               dispatch(setClearCart());
-              Router.push(url, undefined, { shallow: true });
+              setOrderId(response?.data?.order_id);
+              setOrderSuccess(true);
+              //Router.push(url, undefined, { shallow: true });
             } else if (paymentMethod === "offline_payment") {
               setOrderId(response?.data?.order_id);
               setOrderSuccess(true);
@@ -861,7 +863,7 @@ const ItemCheckout = (props) => {
               pb={{ xs: "1rem", sm: "2rem", md: "4rem" }}
             >
               <CheckoutStepper />
-              {zoneData && (
+              {/* {zoneData && (
                 <AddPaymentMethod
                   setPaymentMethod={setPaymentMethod}
                   paymentMethod={paymentMethod}
@@ -872,7 +874,7 @@ const ItemCheckout = (props) => {
                   offlinePaymentOptions={offlinePaymentOptions}
                   setSwitchToWallet={setSwitchToWallet}
                 />
-              )}
+              )} */}
 
               <DeliveryDetails
                 storeData={storeData}

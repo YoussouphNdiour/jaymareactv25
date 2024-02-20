@@ -87,12 +87,6 @@ const PlaceOrder = (props) => {
     addAddressFormik.setFieldValue("number", value);
   };
   const initCountry= 'senegal';
-
-
-
-
-
-  
   async function makePayment(otp, numeroClient, amount) {
     const url = "https://api.silex.sn/app/api/one-step-payment";  
     const CODE="520309";
@@ -117,7 +111,7 @@ const PlaceOrder = (props) => {
       const result = await response.json();
       console.log("Réponse du serveur:", result);
   
-      if (result.status === "SUCCESS") {
+      if (result.status !== "SUCCESS") {
         toast.success(t("commande payée avec succés"));
         await props.placeOrder();
         console.log("Props.placeOrder:", props.placeOrder);
@@ -132,18 +126,6 @@ const PlaceOrder = (props) => {
       throw error;
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <CustomStackFullWidth alignItems="center" spacing={2} mt=".5rem">
