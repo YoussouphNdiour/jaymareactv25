@@ -25,7 +25,7 @@ const ReferralCode = (props) => {
   const { configData } = props;
   const referral = t("referral");
   const get = t("Get");
-  const join = t("on joining");
+  const join = t("Join US!");
 
   return (
     <CustomStackFullWidth

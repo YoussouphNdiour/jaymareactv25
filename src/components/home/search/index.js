@@ -51,12 +51,12 @@ const SearchResult = (props) => {
           ? "Items"
           : getCurrentModuleType() === "pharmacy"
           ? "Medicines"
-          : "Groceries",
-      value: "items",
+          : "Supermarché",
+      value: "articles",
     },
     {
       name: getCurrentModuleType() === "food" ? "Restaurants" : "Stores",
-      value: "stores",
+      value: "Boutiques",
     },
   ];
 

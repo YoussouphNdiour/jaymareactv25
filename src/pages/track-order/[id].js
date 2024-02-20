@@ -13,7 +13,7 @@ const index = ({ configData }) => {
     <>
       <CssBaseline />
       <SEO
-        title={configData ? `Track your order` : "Loading..."}
+        title={configData ? t("Track your order") : "Loading..."}
         image={`${configData?.base_urls?.business_logo_url}/${configData?.fav_icon}`}
         businessName={configData?.business_name}
       />

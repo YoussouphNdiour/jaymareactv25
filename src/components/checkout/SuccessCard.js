@@ -140,7 +140,7 @@ const SuccessCard = ({ configData, total, order_id }) => {
             }
             variant="contained"
           >
-            {t("Track your order")}
+            {t("Track Your Order")}
           </Button>
           <Typography
             onClick={() => router.push("/home", undefined, { shallow: true })}
@@ -152,7 +152,7 @@ const SuccessCard = ({ configData, total, order_id }) => {
               color: (theme) => theme.palette.primary.main,
             }}
           >
-            {t("Continue shopping ")}
+            {t("Continue Shopping")}
           </Typography>
         </Stack>
       </CustomStackFullWidth>

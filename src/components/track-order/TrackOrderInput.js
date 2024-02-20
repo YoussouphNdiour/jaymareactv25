@@ -72,7 +72,7 @@ const TrackOrderInput = ({ configData }) => {
                 placeholder={t("Enter your order id")}
                 required="true"
                 type="text"
-                label={t("Order Id")}
+                label={t("Order ID")}
                 touched={trackOrderFormik.touched.order_id}
                 errors={trackOrderFormik.errors.order_id}
                 fieldProps={trackOrderFormik.getFieldProps("order_id")}
