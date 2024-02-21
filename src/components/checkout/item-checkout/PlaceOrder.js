@@ -38,7 +38,8 @@ const PlaceOrder = (props) => {
     isSchedules,
     page,
     storeCloseToast,
-    totalAmount
+    totalAmount,
+    id
   } = props;
   const [value, setValue] = React.useState(0);
 
@@ -118,15 +119,19 @@ const PlaceOrder = (props) => {
   
       const result = await response.json();
       console.log("Réponse du serveur:", result);
-  
-      if (result.status === "SUCCESS") {
-        toast.success(t("commande payée avec succés"));
-        await props.placeOrder();
-        console.log("Props.placeOrder:", props.placeOrder);
-        
-      } else {
-        // Logique en cas d'échec
-        return toast.error(result?.detail ? result?.detail : result?.title);
+      if(id==null){
+        toast.error("redémarrer l'application");
+      }
+      else{
+        if (result.status === "SUCCESS") {
+          toast.success(t("commande payée avec succés"));
+          await props.placeOrder();
+          console.log("Props.placeOrder:", props.placeOrder);
+          
+        } else {
+          // Logique en cas d'échec
+          return toast.error(result?.detail ? result?.detail : result?.title);
+        }
       }
     } catch (error) {
       toast.error("Erreur lors de la requête de paiement");

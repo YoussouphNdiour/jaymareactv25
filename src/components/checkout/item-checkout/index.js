@@ -1035,6 +1035,7 @@ const ItemCheckout = (props) => {
                     storeCloseToast={storeCloseToast}
                     page={page}
                     totalAmount={totalAmount}
+                    id={customerData?.data?.id ?? guest_id}
                   />
                 </Stack>
               </CustomPaperBigCard>
