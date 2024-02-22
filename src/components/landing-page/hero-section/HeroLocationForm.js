@@ -38,13 +38,13 @@ const HeroLocationForm = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [location, setLocation] = useState(undefined);
+  const [location, setLocation] = useState({lat: 14.705114433913172, lng: -17.46250790042242});
   const [geoLocationEnable, setGeoLocationEnable] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [enabled, setEnabled] = useState(false);
   const [openLocation, setOpenLocation] = useState(false);
   const [predictions, setPredictions] = useState([]);
-  const [currentLocation, setCurrentLocation] = useState(undefined);
+  const [currentLocation, setCurrentLocation] = useState("PG4Q+324, Dakar, Senegal");
   const [showCurrentLocation, setShowCurrentLocation] = useState(false);
   const [zoneIdEnabled, setZoneIdEnabled] = useState(false);
   const [placeId, setPlaceId] = useState("");
@@ -58,6 +58,10 @@ const HeroLocationForm = () => {
     setOpen(false);
   };
   const handleOpen = () => setOpen(true);
+  const isRootPath = router.pathname === '/';
+
+
+
 
   // const dispatch = useDispatch();
 
@@ -125,6 +129,28 @@ const HeroLocationForm = () => {
     location,
     geoLocationEnable
   );
+  // Set a default location if the route is '/'
+  useEffect(() => {
+    if (isRootPath) {
+      // Set your default location here
+      setLocation({lat:14.705114433913172,lng:-17.46250790042242});
+      setShowCurrentLocation(true);
+      setGeoLocationEnable(true);
+      setZoneIdEnabled(true);
+
+      // Optionally, you can also trigger the setLocationEnable function here
+     
+     
+      for (let i = 0; i < 2; i++) {
+        setTimeout(() => {
+          setLocationEnable();
+        }, 1000*i);
+
+      }
+     
+     
+    }
+  }, [isRootPath]);
 
   useEffect(() => {
     if (geoCodeResults?.results && showCurrentLocation) {
@@ -181,6 +207,8 @@ const HeroLocationForm = () => {
     // }
     setGeoLocationEnable(true);
     setZoneIdEnabled(true);
+    console.log("currentLocation",currentLocation);
+    console.log("location",location);
     if (currentLocation && location) {
       if (getToken()) {
         wishlistRefetch();

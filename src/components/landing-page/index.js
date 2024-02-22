@@ -14,7 +14,7 @@ import { NoSsr, useMediaQuery, useTheme } from "@mui/material";
 import DiscountBanner from "./DiscountBanner";
 import CookiesConsent from "../CookiesConsent";
 import useGetGuest from "../../api-manage/hooks/react-query/guest/useGetGuest";
-
+import SplashScreen from "../../splash-screen";
 const LandingPage = ({ configData, landingPageData }) => {
   const Testimonials = dynamic(() => import("./Testimonials"), {
     ssr: false,
@@ -74,7 +74,8 @@ const LandingPage = ({ configData, landingPageData }) => {
           landingPageData={landingPageData}
           handleOrderNow={handleOrderNow}
         />
-        <ComponentOne
+<SplashScreen/>
+        {/* <ComponentOne
           landingPageData={landingPageData}
           configData={configData}
           handleOrderNow={handleOrderNow}
@@ -107,10 +108,10 @@ const LandingPage = ({ configData, landingPageData }) => {
             configData={configData}
             landingPageData={landingPageData}
           />
-        )}
+        )} 
         {landingPageData?.testimonial_list?.length > 0 && (
           <Testimonials landingPageData={landingPageData} isSmall={isSmall} />
-        )}
+        )}*/}
         {open && (
           <MapModal
             open={open}
