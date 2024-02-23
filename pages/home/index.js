@@ -67,7 +67,8 @@ export const getServerSideProps = async (context) => {
       },
     }
   );
-  const config = await configRes.json();
+  const config = async () => { configRes ?  await configRes.json() : {} };
+  
   const landingPageRes = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/react-landing-page`,
     {
@@ -80,7 +81,7 @@ export const getServerSideProps = async (context) => {
       },
     }
   );
-  const landingPageData = await landingPageRes.json();
+  const landingPageData = async () => { landingPageRes ?  await landingPageRes.json() : {} };
   // Set cache control headers for 1 hour (3600 seconds)
   res.setHeader(
     "Cache-Control",
