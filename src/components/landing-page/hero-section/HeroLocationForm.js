@@ -31,7 +31,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MapIcon from "@mui/icons-material/Map";
 import { getLanguage } from "../../../helper-functions/getLanguage";
-import { Route } from "@mui/icons-material";
 
 const HeroLocationForm = () => {
   const theme = useTheme();
@@ -60,7 +59,6 @@ const HeroLocationForm = () => {
   };
   const handleOpen = () => setOpen(true);
   const isRootPath = router.pathname === '/';
-  const RootPath = router.pathname === 'https://jaymagadegui.shop';
 
 
 
@@ -145,16 +143,8 @@ const HeroLocationForm = () => {
           setLocationEnable();
         }, 1000*i);
       }
-      router.push('/home');
     }
   }, [isRootPath]);
-  useEffect(() => {
-    if (RootPath) {
-      // Set your default location here
-      router.push('/home');
-    }
-    console.log("RootPath",RootPath);
-  }, [RootPath]);
 
   useEffect(() => {
     if (geoCodeResults?.results && showCurrentLocation) {
