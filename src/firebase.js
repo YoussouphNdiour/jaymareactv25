@@ -32,8 +32,7 @@ const messaging = (async () => {
 
 export const fetchToken = async (setTokenFound, setFcmToken) => {
   return getToken(await messaging, {
-    vapidKey:
-      "IZeT04_7bsXubKveTbuigaZl5PNNSZy9pNQP7nZwte8",
+    vapidKey:"IZeT04_7bsXubKveTbuigaZl5PNNSZy9pNQP7nZwte8",
   })
     .then((currentToken) => {
       if (currentToken) {

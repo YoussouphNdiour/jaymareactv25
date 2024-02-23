@@ -31,6 +31,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MapIcon from "@mui/icons-material/Map";
 import { getLanguage } from "../../../helper-functions/getLanguage";
+import { Route } from "@mui/icons-material";
 
 const HeroLocationForm = () => {
   const theme = useTheme();
@@ -59,6 +60,7 @@ const HeroLocationForm = () => {
   };
   const handleOpen = () => setOpen(true);
   const isRootPath = router.pathname === '/';
+  const RootPath = router.pathname === 'https://jaymagadegui.shop';
 
 
 
@@ -137,20 +139,20 @@ const HeroLocationForm = () => {
       setShowCurrentLocation(true);
       setGeoLocationEnable(true);
       setZoneIdEnabled(true);
-
       // Optionally, you can also trigger the setLocationEnable function here
-     
-     
       for (let i = 0; i < 2; i++) {
         setTimeout(() => {
           setLocationEnable();
         }, 1000*i);
-
       }
-     
-     
     }
   }, [isRootPath]);
+  useEffect(() => {
+    if (RootPath) {
+      // Set your default location here
+      router.push('/home');
+    }
+  }, [RootPath]);
 
   useEffect(() => {
     if (geoCodeResults?.results && showCurrentLocation) {
