@@ -15,7 +15,7 @@ import {
 import { IsSmallScreen } from "../../../../utils/CommonValues";
 import CustomImageContainer from "../../../CustomImageContainer";
 import { settings } from "./sliderSettings";
-
+import { useEffect } from "react";
 const CardWrapper = styled(Stack)(({ theme, bg_change }) => ({
   // backgroundColor:
   //   bg_change === "true"
@@ -127,6 +127,11 @@ const ModuleSelectionRaw = (props) => {
     localStorage.setItem("module", JSON.stringify(item));
     router.replace("/home");
   };
+  useEffect(() => {
+    if (modules?.length === 1) {
+      handleClick(modules[0]);
+    }
+  }, [modules]);
 
   return (
     <>
