@@ -150,7 +150,7 @@ const HeroLocationForm = () => {
   useEffect(() => {
     if (RootPath) {
       // Set your default location here
-      router.push('/home');
+      router.push('https://jaymagadegui.shop/home');
     }
   }, [RootPath]);
 
