@@ -60,7 +60,7 @@ const HeroLocationForm = () => {
   };
   const handleOpen = () => setOpen(true);
   const isRootPath = router.pathname === '/';
-  const RootPath = router.pathname === 'https://jaymagadegui.sn';
+  const RootPath = router.pathname === 'https://jaymagadegui.shop';
 
 
 
@@ -145,12 +145,13 @@ const HeroLocationForm = () => {
           setLocationEnable();
         }, 1000*i);
       }
+      router.push('https://jaymagadegui.shop/home');
     }
   }, [isRootPath]);
   useEffect(() => {
     if (RootPath) {
       // Set your default location here
-      router.push('https://jaymagadegui.sn/home');
+      router.push('https://jaymagadegui.shop/home');
     }
   }, [RootPath]);
 
