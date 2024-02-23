@@ -145,14 +145,15 @@ const HeroLocationForm = () => {
           setLocationEnable();
         }, 1000*i);
       }
-      router.push('https://jaymagadegui.shop/home');
+      router.push('/home');
     }
   }, [isRootPath]);
   useEffect(() => {
     if (RootPath) {
       // Set your default location here
-      router.push('https://jaymagadegui.shop/home');
+      router.push('/home');
     }
+    console.log("RootPath",RootPath);
   }, [RootPath]);
 
   useEffect(() => {
