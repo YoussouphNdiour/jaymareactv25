@@ -1,34 +1,34 @@
 export const orderDetailsMenuData = [
   {
     id: 1,
-    name: "order-summary",
+    name: "Order Summary",
   },
   {
     id: 2,
-    name: "seller-info",
+    name: "seller info",
   },
 
   {
     id: 3,
-    name: "delivery-man-info",
+    name: "delivery man info",
   },
   {
     id: 4,
-    name: "track-order",
+    name: "Track Order",
   },
 ];
 export const orderDetailsMenuDataForParcel = [
   {
     id: 1,
-    name: "order-summary",
+    name: "Order Summary",
   },
 
   {
     id: 2,
-    name: "delivery-man-info",
+    name: "delivery man info",
   },
   {
     id: 3,
-    name: "track-order",
+    name: "Track Order",
   },
 ];

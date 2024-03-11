@@ -86,7 +86,7 @@ const OtherOrder = (props) => {
   }, [tab]);
   const activeTabPanel = () => {
     switch (currentTab) {
-      case "order-summary":
+      case "Order Summary":
         return (
           <OrderSummery
             trackOrderData={trackOrderData}
@@ -99,7 +99,7 @@ const OtherOrder = (props) => {
           />
         );
         break;
-      case "seller-info":
+      case "seller info":
         return (
           <>
             {data && data.module_type !== "parcel" && (
@@ -112,7 +112,7 @@ const OtherOrder = (props) => {
           </>
         );
         break;
-      case "delivery-man-info":
+      case "delivery man info":
         return (
           <>
             {trackOrderData?.delivery_man ? (
@@ -128,13 +128,13 @@ const OtherOrder = (props) => {
                 alignItems="center"
               >
                 <NoDeliveryManImage />
-                <Typography> No delivery man assigned </Typography>
+                <Typography> {t("No delivery man assigned")}</Typography>
               </CustomStackFullWidth>
             )}
           </>
         );
         break;
-      case "track-order":
+      case "Track Order":
         return (
           <TrackOrder
             trackOrderData={trackOrderData}

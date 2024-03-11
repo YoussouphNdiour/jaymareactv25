@@ -59,7 +59,7 @@ export const menuData = [
   },
   {
     id:10,
-    name:"track order",
+    name:"Track Order",
     icon:<LocalShippingOutlinedIcon />,
     path:"/track-order"
   }

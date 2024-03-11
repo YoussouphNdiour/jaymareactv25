@@ -65,6 +65,10 @@ export const english = {
   "Search location here...": "Search location here...",
   "Login required.": "Login required.",
   "Seller": "Seller",
+  "seller info":"aa Info",
+  "No delivery man assigned":"No delivery man assigned",
+  "No delivery man assigned for the delivery.":"No delivery man assigned for the delivery.",
+  "items is on the way":"items is on the way",
   "Admin": "Admin",
   "Delivery Man": "Delivery Man",
   "New delivery address selected.": "New delivery address selected.",
@@ -820,6 +824,7 @@ export const english = {
   "canceled": "canceled",
   "cash_on_delivery": "cash_on_delivery",
   "delivered": "delivered",
+  "Payment":"Payment",
   // "away":"away"
   "Comment": "Comment",
   "You have no channels.": "You have no channels.",
@@ -978,7 +983,6 @@ export const english = {
   "Terms and Conditions": "Terms and Conditions",
   "Subscribe to our weekly newsletter and be a part of our journey to self discovery and love.":
     "Subscribe to our weekly newsletter and be a part of our journey to self discovery and love.",
-  "Join Us!": "Join Us!",
   "Recent Searches": "Recent Searches",
   "Quick View": "Quick View",
   "Visit Store": "Visit Store",
@@ -1146,6 +1150,8 @@ export const english = {
   "this page or go back to previous page":
     "this page or go back to previous page",
   "Go Back": "Go Back",
+  "Chatting with admin":"Chatting with admin",
+  "Order date:":"Order date:",
   "We Deliver Everything": "We Deliver Everything",
   "What are you wish to send?": "What are you wish to send?",
   "Easiest way to get services": "Easiest way to get services",
@@ -1155,4 +1161,9 @@ export const english = {
   "Add Custom Note": "Add Custom Note",
   "Instructions": "Instructions",
   "Note must not be grater than 191 characters": "Note must not be grater than 191 characters",
+  "No Address Found":"No Address Found",
+  "No Orders Found":"No Orders Found",
+  "Review":"Review",
+ "Positive Review":"Positive Review",
+ "Delivery Time":"Delivery Time",
 };

@@ -19,6 +19,7 @@ import { t } from "i18next";
 import { SmallDeviceIconButton } from "../profile/basic-information";
 import { useTheme } from "@emotion/react";
 import { setAllSaveAddress } from "../../redux/slices/storedData";
+import {useTranslation} from "react-i18next";
 
 export const GrayButton = styled(Button)(({ theme }) => ({
   color: theme.palette.neutral[400],
@@ -42,7 +43,7 @@ const Address = (props) => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("md"));
   const { openAddressModal } = useSelector((state) => state.addressModel);
-
+  const {t} = useTranslation()
   const [edit, setEdit] = useState(null);
   useEffect(() => {
     if (AllSaveAddress?.length === 0) {
@@ -145,7 +146,8 @@ const Address = (props) => {
                 height="100%"
               >
                 <CustomEmptyResult
-                  label="No Address Found"
+                  label={t('No Address Found')}
+                  //"No Address Found"
                   image={nodata}
                   width="128px"
                   height="170px"

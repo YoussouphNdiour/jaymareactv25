@@ -231,7 +231,7 @@ const TopDetails = (props) => {
 								fontWeight: "600",
 							}}
 						>
-							{trackData?.order_status?.replace("_", " ")}
+							{t(trackData?.order_status?.replace("_", " "))}
 						</Typography>
 					</Typography>
 				)}

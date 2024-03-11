@@ -88,7 +88,7 @@ const RateAndReview = () => {
                   height="100%"
                 >
                   <CustomEmptyResult
-                    label="No delivery man assigned for the delivery."
+                    label={t("No delivery man assigned for the delivery.")}
                     image={nodata}
                   />
                 </Stack>

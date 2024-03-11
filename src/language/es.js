@@ -526,7 +526,7 @@ export const spain = {
   "Restaurant Informations": "معلومات المطعم",
   "Give a review": "قدِّم مراجعة",
   "Cancel Order": "الغاء الطلب",
-  "Order Confirmed": "تم تاكيد الطلب",
+  "": "تم تاكيد الطلب",
   "Preparing Food": "تحضير الطعام",
   "Food is on the way": "الطعام في الطريق",
   Delivered: "تم التوصيل",

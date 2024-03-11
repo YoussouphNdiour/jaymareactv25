@@ -73,12 +73,12 @@ const StoreDetails = (props) => {
             >
               <StoreFeature
                 count={`${storeData?.positive_rating}% `}
-                title="Positive Review"
+                title={t("Positive Review")}
               />
-              <StoreFeature count={storeData?.total_items} title="Products" />
+              <StoreFeature count={storeData?.total_items} title={t("Products")} />
               <StoreFeature
                 count={storeData?.delivery_time}
-                title="Delivery Time"
+                title={t("Delivery Time")}
               />
             </CustomStackFullWidth>
           </Grid>

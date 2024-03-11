@@ -157,7 +157,7 @@ const MyOrders = (props) => {
         return (
           <CustomEmptyResult
             image={nodata}
-            label="No Orders Found"
+            label={t("No Orders Found")}
             width="128px"
             height="128px"
           />
