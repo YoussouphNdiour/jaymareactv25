@@ -30,7 +30,7 @@ const clientSideEmotionCache = createEmotionCache();
 function MyApp(props) {
     const {Component, emotionCache = clientSideEmotionCache, pageProps,configData} = props;
     const getLayout = Component.getLayout ?? ((page) => page);
-    const {t} = useTranslation()
+    const {t} = useTranslation();
     const queryClient = new QueryClient({
         defaultOptions: {
             queries: {

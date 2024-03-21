@@ -72,7 +72,7 @@ import {
   setOfflineMethod,
   setOrderDetailsModal,
 } from "../../../redux/slices/offlinePaymentData";
-import { ButtonGroup, Tabs } from "@mui/material";
+
 import CustomImageContainer from "../../CustomImageContainer";
 import thunderstorm from "../assets/thunderstorm.svg";
 
@@ -85,7 +85,7 @@ const ItemCheckout = (props) => {
   const [payableAmount, setPayableAmount] = useState(null);
   const [address, setAddress] = useState(undefined);
   const { couponInfo } = useSelector((state) => state.profileInfo);
-  const [paymentMethod, setPaymentMethod] = useState("digital_payment");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [numberOfDay, setDayNumber] = useState(getDayNumber(today));
   const [couponDiscount, setCouponDiscount] = useState(null);
   const [offlinePayments, setOfflinePayments] = useState("");
@@ -487,7 +487,7 @@ const ItemCheckout = (props) => {
                 }&callback=${callBackUrl},`;
                 localStorage.setItem("totalAmount", totalAmount);
                 dispatch(setClearCart());
-                Router.push(url);
+               // Router.push(url);
               } else if (paymentMethod === "wallet") {
                 toast.success(response?.data?.message);
                 setOrderId(response?.data?.order_id);
@@ -538,9 +538,8 @@ const ItemCheckout = (props) => {
               }&payment_platform=${payment_platform}&callback=${callBackUrl}&payment_method=${paymentMethod}`;
               localStorage.setItem("totalAmount", totalAmount);
               dispatch(setClearCart());
-              setOrderId(response?.data?.order_id);
-              setOrderSuccess(true);
-              //Router.push(url, undefined, { shallow: true });
+              console.log("response",response);
+             Router.push(url, undefined, { shallow: true });
             } else if (paymentMethod === "offline_payment") {
               setOrderId(response?.data?.order_id);
               setOrderSuccess(true);
@@ -863,7 +862,7 @@ const ItemCheckout = (props) => {
               pb={{ xs: "1rem", sm: "2rem", md: "4rem" }}
             >
               <CheckoutStepper />
-              {/* {zoneData && (
+              {zoneData && (
                 <AddPaymentMethod
                   setPaymentMethod={setPaymentMethod}
                   paymentMethod={paymentMethod}
@@ -874,7 +873,7 @@ const ItemCheckout = (props) => {
                   offlinePaymentOptions={offlinePaymentOptions}
                   setSwitchToWallet={setSwitchToWallet}
                 />
-              )} */}
+              )}
 
               <DeliveryDetails
                 storeData={storeData}
@@ -981,16 +980,16 @@ const ItemCheckout = (props) => {
                   {getCurrentModuleType() === "food" && storeData?.cutlery && (
                     <Cutlery isChecked={cutlery} handleChange={handleCutlery} />
                   )}
-                  {/* <ItemSelectWithChip
+                  <ItemSelectWithChip
                     title="If Any Product is not available"
                     data={productUnavailableData}
                     handleChange={handleItemUnavailableNote}
-                  /> */}
-                  {/* <ItemSelectWithChip
+                  />
+                  <ItemSelectWithChip
                     title="Add More Delivery Instruction"
                     data={deliveryInstructions}
                     handleChange={handleDeliveryInstructionNote}
-                  /> */}
+                  />
                   {distanceData && storeData ? (
                     <OrderCalculation
                       usePartialPayment={usePartialPayment}
@@ -1034,8 +1033,6 @@ const ItemCheckout = (props) => {
                     isSchedules={isSchedules}
                     storeCloseToast={storeCloseToast}
                     page={page}
-                    totalAmount={totalAmount}
-                    id={customerData?.data?.id ?? guest_id}
                   />
                 </Stack>
               </CustomPaperBigCard>
