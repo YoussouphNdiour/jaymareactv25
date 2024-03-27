@@ -367,6 +367,7 @@ export const french = {
   "Description": "Description",
   "is not available right now.": "n'est pas disponible pour le moment.",
   "Add to Cart": "Ajouter au panier",
+  "Add To Cart": "Ajouter au panier",
   "Total Amount": "Montant total",
   "Add Ons (OPTIONAL)": "Extras (OPTIONNEL)",
   "Select Variations": "Sélectionner des variantes",
