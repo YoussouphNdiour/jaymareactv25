@@ -231,7 +231,7 @@ const PrescriptionCheckout = ({ storeId }) => {
           <Stack spacing={1} justifyContent="space-between">
             <CouponTitle textAlign="left">{t("Order Summary")}</CouponTitle>
             <ItemSelectWithChip
-              title="Add More Delivery Instruction"
+              title={t("Add More Delivery Instruction")}
               data={deliveryInstructions}
               handleChange={handleDeliveryInstructionNote}
             />

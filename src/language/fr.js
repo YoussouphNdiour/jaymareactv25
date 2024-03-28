@@ -978,6 +978,7 @@ export const french = {
 "FIND YOUR HAPPINESS": "TROUVEZ VOTRE BONHEUR",
 "For the love of delicious food.": "Pour l'amour de la bonne nourriture.",
 "Add More Delivery Instruction":"Chosir un jour de livraison *Obligatoire*",
+"Delivery Instruction":"un jour de livraison",
 "Deliver to the front door": "Livrer à la porte d'entrée",
 "Deliver to the reception desk": "Livrer à la réception",
 "Avoid calling phone": "Éviter d'appeler le téléphone",

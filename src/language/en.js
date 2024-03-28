@@ -1019,6 +1019,7 @@ export const english = {
   "Please cancel the order": "Please cancel the order",
   "Call me ASAP": "Call me ASAP",
   "Add More Delivery Instruction":"Add day of delivery",
+  "Delivery Instruction":"day of delivery",
   "Fresh Item that deserve to eat": "Fresh Item that deserve to eat",
   "Exclusive collection for everyone": "Exclusive collection for everyone",
   "Quality Medicines & Health care at your Doorstep.":
