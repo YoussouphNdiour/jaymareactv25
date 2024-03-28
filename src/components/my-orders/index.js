@@ -176,13 +176,18 @@ const MyOrders = (props) => {
                   lg={12}
                   key={order?.id}
                 >
-                  <Order
+                  {
+                    order.order_status !== 'pending' ? 
+                    (
+                      <Order
                     index={index}
                     order={order}
                     t={t}
                     configData={configData}
                     dispatch={dispatch}
                   />
+                    ): null
+                  }
                 </Grid>
               ))}
           </Grid>

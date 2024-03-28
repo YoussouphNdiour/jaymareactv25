@@ -980,13 +980,13 @@ const ItemCheckout = (props) => {
                   {getCurrentModuleType() === "food" && storeData?.cutlery && (
                     <Cutlery isChecked={cutlery} handleChange={handleCutlery} />
                   )}
-                  <ItemSelectWithChip
-                    title="If Any Product is not available"
+                  {/* <ItemSelectWithChip
+                    title={t("If Any Product is not available")}
                     data={productUnavailableData}
                     handleChange={handleItemUnavailableNote}
-                  />
+                  /> */}
                   <ItemSelectWithChip
-                    title="Add More Delivery Instruction"
+                    title= {t("Add More Delivery Instruction")}
                     data={deliveryInstructions}
                     handleChange={handleDeliveryInstructionNote}
                   />
@@ -1033,6 +1033,7 @@ const ItemCheckout = (props) => {
                     isSchedules={isSchedules}
                     storeCloseToast={storeCloseToast}
                     page={page}
+                    delivery_instruction={delivery_instruction}
                   />
                 </Stack>
               </CustomPaperBigCard>

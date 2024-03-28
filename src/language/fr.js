@@ -975,22 +975,9 @@ export const french = {
 "partially paid amount": "montant partiellement payé",
 "Notify me when it is back": "Prévenez-moi quand il est de retour",
 "Remaining Wallet Balance": "Solde restant du portefeuille",
-"Add More Delivery Instruction": "Ajouter plus d'instructions de livraison",
 "FIND YOUR HAPPINESS": "TROUVEZ VOTRE BONHEUR",
 "For the love of delicious food.": "Pour l'amour de la bonne nourriture.",
-
-
-
-
-
-
-
-
-
-
-
-
-
+"Add More Delivery Instruction":"Chosir un jour de livraison *Obligatoire*",
 "Deliver to the front door": "Livrer à la porte d'entrée",
 "Deliver to the reception desk": "Livrer à la réception",
 "Avoid calling phone": "Éviter d'appeler le téléphone",
@@ -1097,7 +1084,6 @@ export const french = {
 "Nous livrons tout": "Nous livrons tout",
 "Que souhaitez-vous envoyer ?": "Que souhaitez-vous envoyer ?",
 "Le moyen le plus simple d'obtenir des services": "Le moyen le plus simple d'obtenir des services",
-"Add More Delivery Instruction": "Ajouter plus d'instructions de livraison",
 "Choisissez des instructions de livraison": "Choisissez des instructions de livraison",
 "Ou ajoutez une note personnalisée": "Ou ajoutez une note personnalisée",
 "Ajouter une note personnalisée": "Ajouter une note personnalisée",

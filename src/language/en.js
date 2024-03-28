@@ -1018,6 +1018,7 @@ export const english = {
   "I will wait until it is restocked": "I will wait until it is restocked",
   "Please cancel the order": "Please cancel the order",
   "Call me ASAP": "Call me ASAP",
+  "Add More Delivery Instruction":"Add day of delivery",
   "Fresh Item that deserve to eat": "Fresh Item that deserve to eat",
   "Exclusive collection for everyone": "Exclusive collection for everyone",
   "Quality Medicines & Health care at your Doorstep.":

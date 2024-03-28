@@ -304,7 +304,7 @@
 // export default PlaceOrder;
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { CustomStackFullWidth } from "../../../styled-components/CustomStyles.style";
@@ -328,6 +328,7 @@ const PlaceOrder = (props) => {
     isSchedules,
     page,
     storeCloseToast,
+    delivery_instruction
   } = props;
 
   const { offlineInfoStep } = useSelector((state) => state.offlinePayment);
@@ -336,6 +337,7 @@ const PlaceOrder = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
+  const [delivery_instruction_bool, setdelivery_instruction_bool] = useState(false);
   const handleChange = (e) => {
     setChecked(e.target.checked);
   };
@@ -357,6 +359,16 @@ const PlaceOrder = (props) => {
       storeCloseToast();
     }
   };
+  useEffect(() => {
+    if (delivery_instruction ) {
+      setdelivery_instruction_bool(true);
+    }
+    else{
+      setdelivery_instruction_bool(false);
+    }
+    
+  }, [delivery_instruction]);
+  
 
   const primaryColor = theme.palette.primary.main;
   return (
@@ -389,7 +401,7 @@ const PlaceOrder = (props) => {
           variant="contained"
           onClick={placeOrder}
           loading={orderLoading}
-          disabled={!checked}
+          disabled={!checked || !delivery_instruction_bool }
         >
           {t("Place Order")}
         </LoadingButton>
@@ -400,7 +412,7 @@ const PlaceOrder = (props) => {
           variant="contained"
           onClick={handleOffline}
           loading={orderLoading}
-          disabled={!checked}
+          disabled={!checked || !delivery_instruction_bool}
         >
           {t("Confirm Order")}
         </LoadingButton>
