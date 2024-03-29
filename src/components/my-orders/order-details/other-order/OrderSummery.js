@@ -398,7 +398,7 @@ const OrderSummery = (props) => {
 						>
 							{trackOrderData?.delivery_instruction && (
 								<InstructionBox
-									title="delivery instruction"
+									title={t("Delivery Instruction")}
 									note={trackOrderData?.delivery_instruction}
 								/>
 							)}
