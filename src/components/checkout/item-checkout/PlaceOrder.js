@@ -337,7 +337,7 @@ const PlaceOrder = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-  const [delivery_instruction_bool, setdelivery_instruction_bool] = useState(false);
+  const [delivery_instruction_bool, setdelivery_instruction_bool] = useState(true);
   const handleChange = (e) => {
     setChecked(e.target.checked);
   };
