@@ -328,7 +328,7 @@ const PlaceOrder = (props) => {
     isSchedules,
     page,
     storeCloseToast,
-    delivery_instruction
+    //delivery_instruction
   } = props;
 
   const { offlineInfoStep } = useSelector((state) => state.offlinePayment);
@@ -359,15 +359,15 @@ const PlaceOrder = (props) => {
       storeCloseToast();
     }
   };
-  useEffect(() => {
-    if (delivery_instruction ) {
-      setdelivery_instruction_bool(true);
-    }
-    else{
-      setdelivery_instruction_bool(false);
-    }
+  // useEffect(() => {
+  //   if (delivery_instruction ) {
+  //     setdelivery_instruction_bool(true);
+  //   }
+  //   else{
+  //     setdelivery_instruction_bool(false);
+  //   }
     
-  }, [delivery_instruction]);
+  // }, [delivery_instruction]);
   
 
   const primaryColor = theme.palette.primary.main;
@@ -401,7 +401,9 @@ const PlaceOrder = (props) => {
           variant="contained"
           onClick={placeOrder}
           loading={orderLoading}
-          disabled={!checked || !delivery_instruction_bool }
+          disabled={!checked 
+           // || !delivery_instruction_bool 
+          }
         >
           {t("Place Order")}
         </LoadingButton>
