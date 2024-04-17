@@ -99,7 +99,7 @@ const ItemCheckout = (props) => {
   const [isImageSelected, setIsImageSelected] = useState([]);
   const [cutlery, setCutlery] = useState(0);
   const [unavailable_item_note, setUnavailable_item_note] = useState(null);
-  const [delivery_instruction, setDelivery_instruction] = useState(null);
+  const [delivery_instruction, setDelivery_instruction] = useState('');
   const [usePartialPayment, setUsePartialPayment] = useState(false);
   const [switchToWallet, setSwitchToWallet] = useState(false);
   const [openModal, setOpenModal] = useState(false);
