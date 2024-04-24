@@ -124,29 +124,30 @@ const CartContent = (props) => {
       if (cartItem?.stock <= cartItem?.quantity) {
         toast.error(t(out_of_stock));
       } else {
-        if (cartItem?.maximum_cart_quantity) {
-          if (cartItem?.maximum_cart_quantity <= cartItem?.quantity) {
-            toast.error(t(out_of_limits));
-          } else {
+        // if (cartItem?.maximum_cart_quantity) {
+          // if (cartItem?.maximum_cart_quantity <= cartItem?.quantity) {
+          //   toast.error(t(out_of_limits));
+          // } else {
             updateMutate(itemObject, {
               onSuccess: cartUpdateHandleSuccess,
               onError: onErrorResponse,
             });
-          }
-        } else {
-          updateMutate(itemObject, {
-            onSuccess: cartUpdateHandleSuccess,
-            onError: onErrorResponse,
-          });
-        }
+          // }
+        // } 
+        // else {
+        //   updateMutate(itemObject, {
+        //     onSuccess: cartUpdateHandleSuccess,
+        //     onError: onErrorResponse,
+        //   });
+        // }
       }
     } else {
-      if (cartItem?.maximum_cart_quantity) {
-        if (cartItem?.maximum_cart_quantity <= cartItem?.quantity) {
-          toast.error(t(out_of_limits));
-        } else {
-        }
-      }
+      // if (cartItem?.maximum_cart_quantity) {
+      //   if (cartItem?.maximum_cart_quantity <= cartItem?.quantity) {
+      //     toast.error(t(out_of_limits));
+      //   } else {
+      //   }
+      // }
       updateMutate(itemObject, {
         onSuccess: cartUpdateHandleSuccess,
         onError: onErrorResponse,

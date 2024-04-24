@@ -146,14 +146,15 @@ const ProductInformation = ({
   const incrementQuantity = () => {
     if (state.modalData[0]?.stock > state.modalData[0]?.quantity) {
       if (productDetailsData?.maximum_cart_quantity) {
-        if (
-          productDetailsData?.maximum_cart_quantity >
-          state.modalData[0]?.quantity
-        ) {
+        // if (
+        //   productDetailsData?.maximum_cart_quantity >
+        //   state.modalData[0]?.quantity
+        // ) {
           dispatch({ type: ACTION.incrementQuantity });
-        } else {
-          toast.error(t(out_of_limits));
-        }
+        // } 
+        // else {
+        //   toast.error(t(out_of_limits));
+        // }
       } else {
         dispatch({ type: ACTION.incrementQuantity });
       }
