@@ -776,14 +776,15 @@ const FoodDetailModal = ({
   };
 
   const incrementPrice = () => {
-    if (modalData[0]?.maximum_cart_quantity) {
-      // if (modalData[0]?.maximum_cart_quantity <= modalData[0]?.quantity) {
-      //   toast.error(t(out_of_limits));
-      // } else {
-        setQuantity((prevQty) => prevQty + 1);
-      // }
-    // } else {
-    //   setQuantity((prevQty) => prevQty + 1);
+    // if (modalData[0]?.maximum_cart_quantity) {
+    //   if (modalData[0]?.maximum_cart_quantity <= modalData[0]?.quantity) {
+    //     toast.error(t(out_of_limits));
+    //   } else {
+    //     setQuantity((prevQty) => prevQty + 1);
+    //   }
+    // } 
+    // else {
+      setQuantity((prevQty) => prevQty + 1);
     // }
   };
   const { mutate: addFavoriteMutation } = useAddToWishlist();
