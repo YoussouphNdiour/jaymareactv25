@@ -138,7 +138,7 @@ const HeroLocationForm = () => {
       setGeoLocationEnable(true);
       setZoneIdEnabled(true);
       // Optionally, you can also trigger the setLocationEnable function here
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         setTimeout(() => {
           setLocationEnable();
         }, 1000*i);
