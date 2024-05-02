@@ -130,21 +130,21 @@ const HeroLocationForm = () => {
     geoLocationEnable
   );
   // Set a default location if the route is '/'
-  useEffect(() => {
-    // if (isRootPath) {
-      // Set your default location here
-      setLocation({lat:14.705114433913172,lng:-17.46250790042242});
-      setShowCurrentLocation(true);
-      setGeoLocationEnable(true);
-      setZoneIdEnabled(true);
-      // Optionally, you can also trigger the setLocationEnable function here
-      for (let i = 0; i < 1; i++) {
-        setTimeout(() => {
-          setLocationEnable();
-        }, 1000*i);
-      }
-    // }
-  }, []);
+  // useEffect(() => {
+  //   // if (isRootPath) {
+  //     // Set your default location here
+  //     setLocation({lat:14.705114433913172,lng:-17.46250790042242});
+  //     setShowCurrentLocation(true);
+  //     setGeoLocationEnable(true);
+  //     setZoneIdEnabled(true);
+  //     // Optionally, you can also trigger the setLocationEnable function here
+  //     for (let i = 0; i < 1; i++) {
+  //       setTimeout(() => {
+  //         setLocationEnable();
+  //       }, 1000*i);
+  //     }
+  //   // }
+  // }, []);
 
   useEffect(() => {
     if (geoCodeResults?.results && showCurrentLocation) {

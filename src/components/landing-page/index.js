@@ -31,7 +31,11 @@ const LandingPage = ({ configData, landingPageData }) => {
     isGeolocationEnabled: true,
   });
   useEffect(() => {
-    setLocation(JSON.stringify(localStorage.getItem("location")));
+    if (!coords) {
+      setLocation(JSON.stringify({ latitude:14.705114433913172, longitude:-17.46250790042242 }));
+    } else {
+      setLocation(JSON.stringify(coords));
+    }
   }, []);
   const handleClose = () => {
     const location = localStorage.getItem("location");
