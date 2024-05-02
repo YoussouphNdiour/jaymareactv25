@@ -78,7 +78,7 @@ const LandingPage = ({ configData, landingPageData }) => {
           landingPageData={landingPageData}
           handleOrderNow={handleOrderNow}
         />
-<SplashScreen/>
+{/* <SplashScreen/> */}
         {/* <ComponentOne
           landingPageData={landingPageData}
           configData={configData}

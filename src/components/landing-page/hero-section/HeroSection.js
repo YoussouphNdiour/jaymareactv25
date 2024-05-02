@@ -26,7 +26,7 @@ const HeroSection = ({ configData, landingPageData, handleOrderNow }) => {
 	const theme = useTheme();
 	const isXSmall = useMediaQuery(theme.breakpoints.down("sm"));
 	const { t } = useTranslation();
-	const [currentLocation, setCurrentLocation] = useState({ latitude:14.705114433913172, longitude:-17.46250790042242 });
+	const [currentLocation, setCurrentLocation] = useState(null);
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			setCurrentLocation(window.localStorage.getItem("location"));
