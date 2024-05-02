@@ -144,7 +144,7 @@ const HeroLocationForm = () => {
         }, 1000*i);
       }
     }
-  }, [isRootPath]);
+  }, []);
 
   useEffect(() => {
     if (geoCodeResults?.results && showCurrentLocation) {

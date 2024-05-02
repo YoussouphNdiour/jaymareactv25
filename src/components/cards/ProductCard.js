@@ -515,14 +515,14 @@ const ProductCard = (props) => {
     if (isExisted) {
       if (getCurrentModuleType() === "food") {
         if (item?.maximum_cart_quantity) {
-          if (item?.maximum_cart_quantity <= isExisted?.quantity) {
-            toast.error(t(out_of_limits));
-          } else {
+          // if (item?.maximum_cart_quantity <= isExisted?.quantity) {
+          //   toast.error(t(out_of_limits));
+          // } else {
             updateMutate(itemObject, {
               onSuccess: cartUpdateHandleSuccess,
               onError: onErrorResponse,
             });
-          }
+          // }
         } else {
           updateMutate(itemObject, {
             onSuccess: cartUpdateHandleSuccess,
@@ -532,14 +532,14 @@ const ProductCard = (props) => {
       } else {
         if (isExisted?.quantity + 1 <= item?.stock) {
           if (item?.maximum_cart_quantity) {
-            if (item?.maximum_cart_quantity <= isExisted?.quantity) {
-              toast.error(t(out_of_limits));
-            } else {
+            // if (item?.maximum_cart_quantity <= isExisted?.quantity) {
+            //   toast.error(t(out_of_limits));
+            // } else {
               updateMutate(itemObject, {
                 onSuccess: cartUpdateHandleSuccess,
                 onError: onErrorResponse,
               });
-            }
+            // }
           } else {
             updateMutate(itemObject, {
               onSuccess: cartUpdateHandleSuccess,
@@ -547,7 +547,8 @@ const ProductCard = (props) => {
             });
             reduxDispatch(setIncrementToCartItem(isInCart));
           }
-        } else {
+        } 
+        else {
           toast.error(t(out_of_stock));
         }
       }
