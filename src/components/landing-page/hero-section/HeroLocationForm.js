@@ -131,7 +131,7 @@ const HeroLocationForm = () => {
   );
   // Set a default location if the route is '/'
   useEffect(() => {
-    if (isRootPath) {
+    // if (isRootPath) {
       // Set your default location here
       setLocation({lat:14.705114433913172,lng:-17.46250790042242});
       setShowCurrentLocation(true);
@@ -143,7 +143,7 @@ const HeroLocationForm = () => {
           setLocationEnable();
         }, 1000*i);
       }
-    }
+    // }
   }, []);
 
   useEffect(() => {
