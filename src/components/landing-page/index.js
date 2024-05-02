@@ -31,11 +31,11 @@ const LandingPage = ({ configData, landingPageData }) => {
     isGeolocationEnabled: true,
   });
   useEffect(() => {
-    if (!coords) {
-      setLocation(JSON.stringify({ latitude:14.705114433913172, longitude:-17.46250790042242 }));
-    } else {
+    // if (!coords) {
+    //   setLocation(JSON.stringify({ latitude:14.705114433913172, longitude:-17.46250790042242 }));
+    // } else {
       setLocation(JSON.stringify(coords));
-    }
+    // }
   }, []);
   const handleClose = () => {
     const location = localStorage.getItem("location");
@@ -78,7 +78,7 @@ const LandingPage = ({ configData, landingPageData }) => {
           landingPageData={landingPageData}
           handleOrderNow={handleOrderNow}
         />
-{/* <SplashScreen/> */}
+<SplashScreen/>
         {/* <ComponentOne
           landingPageData={landingPageData}
           configData={configData}
