@@ -18,7 +18,7 @@ const GetLocationForm = ({
   setCurrentLactionValue,
   toReceiver,
 }) => {
-  const [location, setLocation] = useState(undefined);
+  const [location, setLocation] = useState({ latitude:14.705114433913172, longitude:-17.46250790042242 });
   const [geoLocationEnable, setGeoLocationEnable] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [enabled, setEnabled] = useState(false);
