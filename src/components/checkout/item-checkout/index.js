@@ -257,7 +257,18 @@ const ItemCheckout = (props) => {
       taxAmount,
       storeData
     );
-    setTotalOrderAmount(total_order_amount);
+  
+    // Round total_order_amount to nearest 5 or 10
+    const roundedAmount = Math.round(total_order_amount * 10) / 10;
+    const lastDigit = roundedAmount % 10;
+  
+    if (lastDigit >= 1 && lastDigit <= 4) {
+      setTotalOrderAmount(roundedAmount + (5 - lastDigit));
+    } else if (lastDigit >= 6 && lastDigit <= 9) {
+      setTotalOrderAmount(roundedAmount + (10 - lastDigit));
+    } else {
+      setTotalOrderAmount(roundedAmount);
+    }
   }, [cartList, couponDiscount, taxAmount]);
 
   const handleOffineOrder = () => {
