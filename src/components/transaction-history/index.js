@@ -85,7 +85,9 @@ const TransactionHistory = (props) => {
   } = props;
 
   const [trxData, setTrxData] = useState([]);
-  const [period, setPeriod] = useState("day"); // Add state for the period filter
+  const [period, setPeriod] = useState("day"); // State for period filter
+  const [selectedMonth, setSelectedMonth] = useState(""); // State for month filter
+  const [selectedYear, setSelectedYear] = useState(""); // State for year filter
 
   useEffect(() => {
     if (!isLoading) {
@@ -121,7 +123,33 @@ const TransactionHistory = (props) => {
     setOffset(1);
   };
 
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+    setOffset(1);
+  };
+
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+    setOffset(1);
+  };
+
   const theme = useTheme();
+
+  const filteredData = (trxData || []).filter((item) => {
+    const itemDate = moment(item?.created_at);
+    if (period === "day") {
+      return itemDate.isSame(moment(), 'day');
+    } else if (period === "week") {
+      return itemDate.isSame(moment(), 'week');
+    } else if (period === "month" && selectedMonth && selectedYear) {
+      return itemDate.isSame(`${selectedYear}-${selectedMonth}`, 'month');
+    } else if (period === "year" && selectedYear) {
+      return itemDate.isSame(selectedYear, 'year');
+    }
+    return true;
+  });
+  
+
   return (
     <>
       <Stack
@@ -151,9 +179,31 @@ const TransactionHistory = (props) => {
               </MenuItem>
             ))}
           </CustomSelect>
+          {(period === "month" || period === "year") && (
+            <CustomSelect value={selectedYear} onChange={handleYearChange}>
+              {/* Populate year options dynamically */}
+              {[...Array(10).keys()].map((i) => {
+                const year = moment().subtract(i, 'years').format('YYYY');
+                return (
+                  <MenuItem key={year} value={year}>
+                    {year}
+                  </MenuItem>
+                );
+              })}
+            </CustomSelect>
+          )}
+          {period === "month" && (
+            <CustomSelect value={selectedMonth} onChange={handleMonthChange}>
+              {moment.months().map((month, i) => (
+                <MenuItem key={i} value={String(i + 1).padStart(2, '0')}>
+                  {month}
+                </MenuItem>
+              ))}
+            </CustomSelect>
+          )}
         </Stack>
       </Stack>
-      {trxData?.length > 0 && (
+      {filteredData?.length > 0 && (
         <SimpleBar style={{ maxHeight: "60vh" }}>
           <TableContainer>
             <CustomTable>
@@ -192,7 +242,7 @@ const TransactionHistory = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {trxData?.map((item, index) => {
+                {filteredData?.map((item, index) => {
                   return (
                     <TableRow
                       key={item?.id}
@@ -284,7 +334,7 @@ const TransactionHistory = (props) => {
           </CustomTable>
         </TableContainer>
       )}
-      {trxData?.length == 0 && (
+      {filteredData?.length == 0 && (
         <CustomEmptyResult
           image={nodataimage}
           width="128px"
