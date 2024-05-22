@@ -41,7 +41,9 @@ const TransactionHistoryMobile = ({
   isFetching,
 }) => {
   const [trxData, setTrxData] = useState([]);
-  const [period, setPeriod] = useState("day"); // Add state for the period filter
+  const [period, setPeriod] = useState("day"); // State for period filter
+  const [selectedMonth, setSelectedMonth] = useState(""); // State for month filter
+  const [selectedYear, setSelectedYear] = useState(""); // State for year filter
 
   useEffect(() => {
     if (!isLoading) {
@@ -65,17 +67,41 @@ const TransactionHistoryMobile = ({
     }
   }, [inView]);
 
-  const { t } = useTranslation();
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    setOffset(1);
+  };
 
   const handlePeriodChange = (e) => {
     setPeriod(e.target.value);
     setOffset(1);
   };
-  const handleChange = (e) => {
-    setValue(e.target.value);
+
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
     setOffset(1);
   };
+
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+    setOffset(1);
+  };
+
   const theme = useTheme();
+
+  const filteredData = (trxData || []).filter((item) => {
+    const itemDate = moment(item?.created_at);
+    if (period === "day") {
+      return itemDate.isSame(moment(), 'day');
+    } else if (period === "week") {
+      return itemDate.isSame(moment(), 'week');
+    } else if (period === "month" && selectedMonth && selectedYear) {
+      return itemDate.isSame(`${selectedYear}-${selectedMonth}`, 'month');
+    } else if (period === "year" && selectedYear) {
+      return itemDate.isSame(selectedYear, 'year');
+    }
+    return true;
+  });
   return (
     <CustomStackFullWidth>
       <Stack
@@ -98,16 +124,38 @@ const TransactionHistoryMobile = ({
             ))}
           </CustomSelect>
         )}
-          <CustomSelect value={period} onChange={handlePeriodChange}>
+           <CustomSelect value={period} onChange={handlePeriodChange}>
             {period_options?.map((item, i) => (
               <MenuItem key={i} value={item?.value}>
                 {t(item?.label)}
               </MenuItem>
             ))}
           </CustomSelect>
+          {(period === "month" || period === "year") && (
+            <CustomSelect value={selectedYear} onChange={handleYearChange}>
+              {/* Populate year options dynamically */}
+              {[...Array(10).keys()].map((i) => {
+                const year = moment().subtract(i, 'years').format('YYYY');
+                return (
+                  <MenuItem key={year} value={year}>
+                    {year}
+                  </MenuItem>
+                );
+              })}
+            </CustomSelect>
+          )}
+            {period === "month" && (
+            <CustomSelect value={selectedMonth} onChange={handleMonthChange}>
+              {moment.months().map((month, i) => (
+                <MenuItem key={i} value={String(i + 1).padStart(2, '0')}>
+                  {month}
+                </MenuItem>
+              ))}
+            </CustomSelect>
+          )}
       </Stack>
-      {trxData?.length > 0 &&
-        trxData?.map((item) => {
+      {filteredData?.length > 0 &&
+        filteredData?.map((item) => {
           return (
             <Stack
               key={item?.id}
