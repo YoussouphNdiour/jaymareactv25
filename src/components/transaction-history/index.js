@@ -53,6 +53,24 @@ export const transaction_options = [
     value: "referrer",
   },
 ];
+export const period_options = [
+  {
+    label: "Jour",
+    value: "day",
+  },
+  {
+    label: "Semaine",
+    value: "week",
+  },
+  {
+    label: "Mois",
+    value: "month",
+  },
+  {
+    label: "Année",
+    value: "year",
+  },
+];
 
 const TransactionHistory = (props) => {
   const {
@@ -67,6 +85,7 @@ const TransactionHistory = (props) => {
   } = props;
 
   const [trxData, setTrxData] = useState([]);
+  const [period, setPeriod] = useState("day"); // Add state for the period filter
 
   useEffect(() => {
     if (!isLoading) {
@@ -77,6 +96,7 @@ const TransactionHistory = (props) => {
       }
     }
   }, [data]);
+
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -95,6 +115,12 @@ const TransactionHistory = (props) => {
     setValue(e.target.value);
     setOffset(1);
   };
+
+  const handlePeriodChange = (e) => {
+    setPeriod(e.target.value);
+    setOffset(1);
+  };
+
   const theme = useTheme();
   return (
     <>
@@ -108,15 +134,24 @@ const TransactionHistory = (props) => {
         <Typography fontSize="18px" fontWeight="700" py="1rem" m={0}>
           {t("Transaction History")}
         </Typography>
-        {page != "loyalty" && (
-          <CustomSelect value={value} onChange={(e) => handleChange(e)}>
-            {transaction_options?.map((item, i) => (
+        <Stack direction="row" gap={2}>
+          {page != "loyalty" && (
+            <CustomSelect value={value} onChange={handleChange}>
+              {transaction_options?.map((item, i) => (
+                <MenuItem key={i} value={item?.value}>
+                  {t(item?.label)}
+                </MenuItem>
+              ))}
+            </CustomSelect>
+          )}
+          <CustomSelect value={period} onChange={handlePeriodChange}>
+            {period_options?.map((item, i) => (
               <MenuItem key={i} value={item?.value}>
                 {t(item?.label)}
               </MenuItem>
             ))}
           </CustomSelect>
-        )}
+        </Stack>
       </Stack>
       {trxData?.length > 0 && (
         <SimpleBar style={{ maxHeight: "60vh" }}>
@@ -261,6 +296,7 @@ const TransactionHistory = (props) => {
     </>
   );
 };
+
 
 export const CustomSelect = ({
   label,
