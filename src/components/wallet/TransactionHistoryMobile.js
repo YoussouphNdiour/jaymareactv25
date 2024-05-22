@@ -12,7 +12,24 @@ import CustomEmptyResult from "../custom-empty-result";
 import nodataimage from "../loyalty-points/assets/Search.svg";
 import { CustomSelect, transaction_options } from "../transaction-history";
 import TransactionShimmer from "../transaction-history/Shimmer";
-
+export const period_options = [
+  {
+    label: "Jour",
+    value: "day",
+  },
+  {
+    label: "Semaine",
+    value: "week",
+  },
+  {
+    label: "Mois",
+    value: "month",
+  },
+  {
+    label: "Année",
+    value: "year",
+  },
+];
 const TransactionHistoryMobile = ({
   data,
   isLoading,
@@ -24,6 +41,7 @@ const TransactionHistoryMobile = ({
   isFetching,
 }) => {
   const [trxData, setTrxData] = useState([]);
+  const [period, setPeriod] = useState("day"); // Add state for the period filter
 
   useEffect(() => {
     if (!isLoading) {
@@ -34,6 +52,7 @@ const TransactionHistoryMobile = ({
       }
     }
   }, [data]);
+
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -48,6 +67,10 @@ const TransactionHistoryMobile = ({
 
   const { t } = useTranslation();
 
+  const handlePeriodChange = (e) => {
+    setPeriod(e.target.value);
+    setOffset(1);
+  };
   const handleChange = (e) => {
     setValue(e.target.value);
     setOffset(1);
@@ -75,6 +98,13 @@ const TransactionHistoryMobile = ({
             ))}
           </CustomSelect>
         )}
+          <CustomSelect value={period} onChange={handlePeriodChange}>
+            {period_options?.map((item, i) => (
+              <MenuItem key={i} value={item?.value}>
+                {t(item?.label)}
+              </MenuItem>
+            ))}
+          </CustomSelect>
       </Stack>
       {trxData?.length > 0 &&
         trxData?.map((item) => {
