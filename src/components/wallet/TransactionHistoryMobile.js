@@ -56,6 +56,7 @@ const TransactionHistoryMobile = ({
   }, [data]);
 
   const { ref, inView } = useInView();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (inView) {
