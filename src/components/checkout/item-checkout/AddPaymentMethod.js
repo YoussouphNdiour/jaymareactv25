@@ -95,7 +95,9 @@ const AddPaymentMethod = (props) => {
                 ? `${paymentMethod?.replaceAll("_", " ")} (${
                     offlineMethod?.method_name
                   })`
-                : paymentMethod === "flutterwave" ? ( "Orange Money") : "Wave"}
+                : paymentMethod === "flutterwave" ? ( "Orange Money") : (
+                  paymentMethod === "BKASH" ? ("Wave") : ("Paiement en Ligne")
+                )}
             </Typography>
           </Stack>
         ) : (
