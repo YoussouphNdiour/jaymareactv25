@@ -92,6 +92,8 @@ const TransactionHistoryMobile = ({
 
   const filteredData = (trxData || []).filter((item) => {
     const itemDate = moment(item?.created_at);
+    onDataChange(filteredData.reduce((sum, item) => sum + (item.debit || 0), 0));
+
     if (period === "day") {
       return itemDate.isSame(moment(), 'day');
     } else if (period === "week") {
@@ -226,7 +228,7 @@ const TransactionHistoryMobile = ({
       )}
       <Box ref={ref} sx={{ height: "5px" }} />
 
-      {trxData?.length == 0 && (
+      {filteredData?.length == 0 && (
         <CustomEmptyResult
           image={nodataimage}
           width="128px"

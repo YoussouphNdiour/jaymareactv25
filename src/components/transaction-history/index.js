@@ -82,6 +82,7 @@ const TransactionHistory = (props) => {
     offset,
     setOffset,
     isFetching,
+    onDataChange
   } = props;
 
   const [trxData, setTrxData] = useState([]);
@@ -137,6 +138,7 @@ const TransactionHistory = (props) => {
 
   const filteredData = (trxData || []).filter((item) => {
     const itemDate = moment(item?.created_at);
+    onDataChange(filteredData.reduce((sum, item) => sum + (item.debit || 0), 0));
     if (period === "day") {
       return itemDate.isSame(moment(), 'day');
     } else if (period === "week") {

@@ -65,6 +65,11 @@ const LoyaltyPoints = (props) => {
 			label: "Minimum 200 points required to convert into currency",
 		},
 	];
+	const [childData, setChildData] = useState('');
+
+	const handleChildData = (data) => {
+	  setChildData(data);
+	};
 	return (
 		<CustomStackFullWidth
 			my={{ xs: "1rem", md: "2rem" }}
@@ -103,7 +108,7 @@ const LoyaltyPoints = (props) => {
 							</Stack>
 						)}
 						<WalletBoxComponent
-							balance={userData?.loyalty_point}
+							balance={childData}
 							title={t("Total points")}
 							image={trophy}
 							handleConvertCurrency={handleConvertCurrency}
@@ -145,6 +150,7 @@ const LoyaltyPoints = (props) => {
 							isFetching={isFetching}
 							offset={offset}
 							setOffset={setOffset}
+							onDataChange={handleChildData}
 						/>
 					) : (
 						<TransactionHistory
@@ -154,6 +160,7 @@ const LoyaltyPoints = (props) => {
 							isFetching={isFetching}
 							offset={offset}
 							setOffset={setOffset}
+							onDataChange={handleChildData}
 						/>
 					)}
 				</Grid>
