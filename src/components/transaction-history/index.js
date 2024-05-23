@@ -138,7 +138,8 @@ const TransactionHistory = (props) => {
 
   const filteredData = (trxData || []).filter((item) => {
     const itemDate = moment(item?.created_at);
-    onDataChange(filteredData.reduce((sum, item) => sum + (item.debit || 0), 0));
+    const sum = filteredData.reduce((sum, item) => sum + (item.debit || 0), 0);
+    onDataChange(sum);
     if (period === "day") {
       return itemDate.isSame(moment(), 'day');
     } else if (period === "week") {

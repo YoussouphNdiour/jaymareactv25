@@ -95,6 +95,11 @@ const Wallet = (props) => {
       label: "Send your wallet money while order",
     },
   ];
+  const [childData, setChildData] = useState(0);
+
+	const handleChildData = (data) => {
+	  setChildData(data);
+	};
   return (
     <CustomStackFullWidth
       my={{ xs: "1rem", md: "2rem" }}
@@ -132,7 +137,7 @@ const Wallet = (props) => {
             )}
             <WalletBoxComponent
               title={t("Total Balance")}
-              balance={userData && userData?.wallet_balance}
+              balance={userData && childData}
               image={wallet}
               userDataLoading={userDataLoading}
             />
@@ -159,6 +164,7 @@ const Wallet = (props) => {
               offset={offset}
               setOffset={setOffset}
               isFetching={isFetching}
+              onDataChange={handleChildData}
             />
           ) : (
             <TransactionHistory
@@ -169,6 +175,7 @@ const Wallet = (props) => {
               offset={offset}
               setOffset={setOffset}
               isFetching={isFetching}
+              onDataChange={handleChildData}
             />
           )}
         </Grid>
