@@ -65,7 +65,7 @@ const LoyaltyPoints = (props) => {
 			label: "Minimum 200 points required to convert into currency",
 		},
 	];
-	const [childData, setChildData] = useState('');
+	const [childData, setChildData] = useState(0);
 
 	const handleChildData = (data) => {
 	  setChildData(data);
