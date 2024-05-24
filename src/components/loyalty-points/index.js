@@ -34,6 +34,8 @@ const LoyaltyPoints = (props) => {
 	const dispatch = useDispatch();
 	const [openPopover, setOpenPopover] = useState(false);
 	const anchorRef = useRef(null);
+	const [totalCredit, setTotalCredit] = useState(0); // Nouvel état pour la somme des crédits
+
 	const userOnSuccessHandler = (res) => {
 		dispatch(setUser(res));
 	};
@@ -65,6 +67,7 @@ const LoyaltyPoints = (props) => {
 			label: "Minimum 200 points required to convert into currency",
 		},
 	];
+	
 	return (
 		<CustomStackFullWidth
 			my={{ xs: "1rem", md: "2rem" }}
@@ -103,7 +106,7 @@ const LoyaltyPoints = (props) => {
 							</Stack>
 						)}
 						<WalletBoxComponent
-							balance={userData?.loyalty_point}
+							balance={totalCredit}
 							title={t("Total points")}
 							image={trophy}
 							handleConvertCurrency={handleConvertCurrency}
@@ -145,6 +148,7 @@ const LoyaltyPoints = (props) => {
 							isFetching={isFetching}
 							offset={offset}
 							setOffset={setOffset}
+							setTotalCredit={setTotalCredit}
 						/>
 					) : (
 						<TransactionHistory
@@ -154,6 +158,7 @@ const LoyaltyPoints = (props) => {
 							isFetching={isFetching}
 							offset={offset}
 							setOffset={setOffset}
+							setTotalCredit={setTotalCredit}
 						/>
 					)}
 				</Grid>

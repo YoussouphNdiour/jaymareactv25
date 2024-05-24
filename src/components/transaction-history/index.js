@@ -82,11 +82,11 @@ const TransactionHistory = (props) => {
     offset,
     setOffset,
     isFetching,
-    
+   setTotalCredit
   } = props;
-
+  const { t } = useTranslation();
   const [trxData, setTrxData] = useState([]);
-  const [period, setPeriod] = useState("day"); // State for period filter
+  const [period, setPeriod] = useState("week"); // State for period filter
   const [selectedMonth, setSelectedMonth] = useState(""); // State for month filter
   const [selectedYear, setSelectedYear] = useState(""); // State for year filter
 
@@ -112,7 +112,6 @@ const TransactionHistory = (props) => {
     }
   }, [inView]);
 
-  const { t } = useTranslation();
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -149,7 +148,13 @@ const TransactionHistory = (props) => {
     }
     return true;
   });
-  
+  const totalCredit = filteredData.reduce((acc, item) => {
+    return acc + (item?.credit || 0) - (item?.debit || 0);
+  }, 0);
+
+  useEffect(() => {
+    setTotalCredit(totalCredit);
+  }, [totalCredit]);
 
   return (
     <>
@@ -298,15 +303,16 @@ const TransactionHistory = (props) => {
                         >
                           {item?.debit ? "- " : "+ "}
                           {page == "loyalty"
-                            ? item?.transaction_type === "point_to_wallet"
+                            ? item?.transaction_type === "point_to_wallet" || item?.transaction_type === "order_place"
                               ? item?.debit
                               : item?.credit
                             : getAmountWithSign(
                                 item?.transaction_type === "point_to_wallet" ||
                                   item?.transaction_type === "partial_payment"
+                                  || item?.transaction_type === "order_place"
                                   ? item?.debit
                                   : item?.credit + item?.admin_bonus
-                              )}
+                              )} 
                         </Typography>
                       </CustomTableCell>
                       <CustomTableCell>
@@ -340,7 +346,7 @@ const TransactionHistory = (props) => {
           image={nodataimage}
           width="128px"
           height="128px"
-          label="No transaction found"
+          label={t("No transaction found")}
         />
       )}
       <CustomDivider />

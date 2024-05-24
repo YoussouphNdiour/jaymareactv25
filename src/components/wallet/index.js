@@ -61,8 +61,8 @@ const Wallet = (props) => {
   } = useGetProfile(userOnSuccessHandler);
 
   const [offset, setOffset] = useState(1);
-
   const [transactionType, setTransactionType] = useState("all");
+  const [totalCredit, setTotalCredit] = useState(0); // Nouvel état pour la somme des crédits
 
   let pageParams = { offset: offset, type: transactionType };
   const { data, refetch, isLoading, isFetching } =
@@ -95,6 +95,7 @@ const Wallet = (props) => {
       label: "Send your wallet money while order",
     },
   ];
+
   return (
     <CustomStackFullWidth
       my={{ xs: "1rem", md: "2rem" }}
@@ -132,7 +133,7 @@ const Wallet = (props) => {
             )}
             <WalletBoxComponent
               title={t("Total Balance")}
-              balance={userData && userData?.wallet_balance}
+              balance={totalCredit}
               image={wallet}
               userDataLoading={userDataLoading}
             />
@@ -159,6 +160,7 @@ const Wallet = (props) => {
               offset={offset}
               setOffset={setOffset}
               isFetching={isFetching}
+              setTotalCredit={setTotalCredit}
             />
           ) : (
             <TransactionHistory
@@ -169,6 +171,7 @@ const Wallet = (props) => {
               offset={offset}
               setOffset={setOffset}
               isFetching={isFetching}
+              setTotalCredit={setTotalCredit} // Ajoutez cette ligne
             />
           )}
         </Grid>
@@ -203,6 +206,7 @@ const Wallet = (props) => {
     </CustomStackFullWidth>
   );
 };
+
 
 Wallet.propTypes = {};
 

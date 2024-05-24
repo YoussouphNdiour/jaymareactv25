@@ -10,8 +10,31 @@ import { CustomStackFullWidth } from "../../styled-components/CustomStyles.style
 import DotSpin from "../DotSpin";
 import CustomEmptyResult from "../custom-empty-result";
 import nodataimage from "../loyalty-points/assets/Search.svg";
-import { CustomSelect, transaction_options } from "../transaction-history";
+import { CustomSelect } from "../transaction-history";
 import TransactionShimmer from "../transaction-history/Shimmer";
+import moment from "moment";
+export const transaction_options = [
+  {
+    label: "All Transaction",
+    value: "all",
+  },
+  {
+    label: "Order Transaction",
+    value: "order",
+  },
+  {
+    label: "Add Fund",
+    value: "add_fund",
+  },
+  {
+    label: "Loyalty Points Transaction",
+    value: "loyalty_point",
+  },
+  {
+    label: "Referrer Transactions",
+    value: "referrer",
+  },
+];
 export const period_options = [
   {
     label: "Jour",
@@ -39,9 +62,11 @@ const TransactionHistoryMobile = ({
   offset,
   setOffset,
   isFetching,
+  setTotalCredit
 }) => {
+  const { t } = useTranslation();
   const [trxData, setTrxData] = useState([]);
-  const [period, setPeriod] = useState("day"); // State for period filter
+  const [period, setPeriod] = useState("week"); // State for period filter
   const [selectedMonth, setSelectedMonth] = useState(""); // State for month filter
   const [selectedYear, setSelectedYear] = useState(""); // State for year filter
 
@@ -56,7 +81,7 @@ const TransactionHistoryMobile = ({
   }, [data]);
 
   const { ref, inView } = useInView();
-  const { t } = useTranslation();
+
 
   useEffect(() => {
     if (inView) {
@@ -103,6 +128,13 @@ const TransactionHistoryMobile = ({
     }
     return true;
   });
+  const totalCredit = filteredData.reduce((acc, item) => {
+    return acc + (item?.credit || 0) - (item?.debit || 0);
+  }, 0);
+
+  useEffect(() => {
+    setTotalCredit(totalCredit);
+  }, [totalCredit]);
   return (
     <CustomStackFullWidth>
       <Stack
@@ -113,14 +145,24 @@ const TransactionHistoryMobile = ({
         mt={2}
         mb={2}
       >
-        <Typography fontSize="14px" fontWeight="700" py="1rem">
-          {t("Transaction History")}
+         <Typography fontSize="14px" fontWeight="700" py="1rem">
+         {t("Transaction History")}
         </Typography>
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        gap={2}
+        mt={2}
+        mb={2}
+      >
+        
         {page != "loyalty" && (
           <CustomSelect value={value} onChange={(e) => handleChange(e)}>
             {transaction_options?.map((item, i) => (
               <MenuItem key={i} value={item?.value}>
-                {item?.label}
+                {t(item?.label)}
               </MenuItem>
             ))}
           </CustomSelect>
@@ -149,7 +191,7 @@ const TransactionHistoryMobile = ({
             <CustomSelect value={selectedMonth} onChange={handleMonthChange}>
               {moment.months().map((month, i) => (
                 <MenuItem key={i} value={String(i + 1).padStart(2, '0')}>
-                  {month}
+                  {t(month)}
                 </MenuItem>
               ))}
             </CustomSelect>
@@ -177,11 +219,11 @@ const TransactionHistoryMobile = ({
                   fontSize="12px"
                 >
                   {page === "loyalty"
-                    ? item?.transaction_type === "point_to_wallet"
+                    ? item?.transaction_type === "point_to_wallet" || item?.transaction_type === "order_place"
                       ? item?.debit
                       : item?.credit
                     : getAmountWithSign(
-                        item?.transaction_type === "point_to_wallet"
+                        item?.transaction_type === "point_to_wallet" || item?.transaction_type === "order_place"
                           ? item?.debit
                           : item?.credit + item?.admin_bonus
                       )}
@@ -231,7 +273,7 @@ const TransactionHistoryMobile = ({
           image={nodataimage}
           width="128px"
           height="128px"
-          label="No transaction found"
+          label={t("No transaction found")}
         />
       )}
       {isLoading && <TransactionShimmer />}
